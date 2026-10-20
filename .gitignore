@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.serena/
+dist/
+validation-results.json
+node_modules/
+skills-lock.json
+.agents/
+.claude/
+.codex/

@@ -1,0 +1,24 @@
+name: Explanation or example problem
+description: Report an incorrect trace, unsafe annotation, or reproducible tooling issue.
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Language, runtime, agent, and learning goal
+      description: Include requested comment language and relevant repository conventions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include fictional input, expected output, and the relevant code. Remove private data.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual output and observed problem
+      description: Include the incorrect comment or state transition and any checks performed.
+    validations:
+      required: true

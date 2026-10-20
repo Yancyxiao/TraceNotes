@@ -1,0 +1,17 @@
+name: Focused improvement
+description: Suggest a workflow, language-adaptation, or documentation improvement.
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Reader's learning problem
+      description: Describe a concrete case the current skill handles poorly.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement and example
+      description: Explain the expected behavior without unrelated refactoring or scope expansion.
+    validations:
+      required: true
