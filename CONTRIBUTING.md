@@ -1,6 +1,6 @@
 # Contributing to TraceNotes
 
-Thank you for helping make difficult code easier to understand. Contributions may be in English or Chinese; include enough context for another maintainer to reproduce the issue. Keep code identifiers and implementation comments in English unless a localized worked example intentionally demonstrates another language.
+Thank you for helping make difficult code easier to understand. Contributions may be in English or Chinese; include enough context for another maintainer to reproduce the issue. Keep code identifiers and implementation comments in English unless a worked example intentionally demonstrates Simplified Chinese comments. Programming languages have no whitelist; either maintained comment language can be used with any implementation language.
 
 ## Useful contributions
 

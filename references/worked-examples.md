@@ -1,8 +1,8 @@
 # Worked examples
 
-These original examples demonstrate a portable method, not a required comment density or a fixed output language. In an actual repository, annotate its implementation and follow its contract. Do not replace it with these algorithms.
+These original examples demonstrate a portable method, not a programming-language whitelist or prescribed language pairing. Comments may be English or Simplified Chinese for any programming language; the sample choices below are interchangeable. In an actual repository, annotate its implementation and follow its contract. Do not replace it with these algorithms.
 
-## Java with Simplified Chinese comments: flush, snapshot, then reset
+## Batch accumulation: flush, snapshot, then reset (Java example)
 
 The reader knows Java syntax but wants to understand why saving the batch happens before clearing it. The caller guarantees `limit > 0`, non-null strings, and each item length no greater than `limit`.
 
@@ -47,7 +47,7 @@ class BatchExample {
 
 The example assumptions do not add validation to the method. For instance, the supplied implementation does not reject an oversized item; do not comment that it does.
 
-## Python with English comments: trace a sliding window
+## Trace a sliding window (Python example)
 
 Assume `width` is a positive integer and `values` is a list of numbers.
 
@@ -74,47 +74,47 @@ def moving_averages(values, width):
 
 Do not silently optimize `pop(0)` into a deque during an annotation-only task. An optimization is a separate change.
 
-## JavaScript with Spanish comments: result order is not completion order
+## Result order is not completion order (JavaScript example)
 
 The reader understands promises but confuses request completion with array order. Assume `fetchLabel` is an async function.
 
 ```javascript
 async function loadLabels(ids, fetchLabel) {
-    // Ejemplo: ids=["a", "b"]. El doble de prueba resuelve "b" antes que "a".
-    // Devuelve [{id:"a", label:"A"}, {id:"b", label:"B"}] en el orden de ids.
+    // Example: ids=["a", "b"]. The test double resolves "b" before "a".
+    // Expected: [{id:"a", label:"A"}, {id:"b", label:"B"}], in ids order.
     const pending = ids.map(async (id) => {
-        // Cada callback conserva su id; al suspenderse, pueden avanzar otros.
+        // Each callback keeps its own id; others can advance while this one awaits.
         const label = await fetchLabel(id);
         return { id, label };
     });
-    // pending contiene promesas, no los objetos finales.
-    // Promise.all mantiene el orden de entrada aunque "b" termine primero.
-    // Si una promesa falla, se rechaza el resultado; esto no cancela las otras.
+    // pending contains promises rather than the final objects.
+    // Promise.all preserves input order even when "b" completes first.
+    // One rejection rejects the result; it does not cancel the other operations.
     return Promise.all(pending);
 }
 ```
 
 The earlier completion of `b` is a controlled fixture, not a universal guarantee. Do not annotate a fixed network schedule as fact.
 
-## SQL with French comments: intermediate rows and deterministic ranking
+## Intermediate rows and deterministic ranking (SQL example)
 
 This self-contained query uses SQLite-compatible syntax. The extra tie-breaker is already part of the supplied query, not a refactor introduced while commenting.
 
 ```sql
 WITH scores(team, person, points) AS (
-    -- Exemple autonome : deux personnes de l'équipe A ont le même score.
+    -- 贯穿示例：A 组有两个人分数相同，B 组有一个人。
     VALUES ('A', 'p1', 8), ('A', 'p2', 8), ('B', 'p3', 6)
 ), ranked AS (
     SELECT team, person, points,
-           -- Pour A : p1 -> rn=1, p2 -> rn=2 ; pour B : p3 -> rn=1.
-           -- person départage ici les ex aequo de façon déterministe.
+           -- 排名后：A 组 p1 的 rn=1、p2 的 rn=2；B 组 p3 的 rn=1。
+           -- 分数相同时按 person 排序，使本例中的名次确定。
            ROW_NUMBER() OVER (
                PARTITION BY team ORDER BY points DESC, person ASC
            ) AS rn
     FROM scores
 )
--- rn=1 conserve une personne par équipe : (A,p1,8), puis (B,p3,6).
--- Cet ORDER BY final fixe l'ordre des lignes renvoyées au lecteur.
+-- 只保留 rn=1：得到 (A,p1,8) 和 (B,p3,6)，每组一行。
+-- 最后的 ORDER BY 固定返回顺序，不依赖中间计算的行顺序。
 SELECT team, person, points FROM ranked WHERE rn = 1 ORDER BY team;
 ```
 

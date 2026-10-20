@@ -8,8 +8,8 @@ Use these prompts to try the skill and review its outputs. They are qualitative 
 | --- | --- |
 | Add Chinese walkthrough comments to this Java batching method. Show why clearing the list does not erase previous results. | One fixture throughout; exact batches; explains snapshot versus alias; no logic change. |
 | Annotate this Python sliding-window function in English for a data engineer who is new to this implementation. | Tracks append, eviction, total, and first output; respects positive-width assumptions; no unnecessary syntax lesson. |
-| Anota esta función JavaScript en español. No entiendo el orden de Promise.all. | Spanish prose; exact identifiers retained; distinguishes result order and completion order; no invented cancellation. |
-| Explique cette requete SQL avec des commentaires en francais et des lignes d'exemple. | Shows rows before/after ranking/filtering; recognizes unspecified order or ties if present; no unrequested query changes. |
+| Annotate this JavaScript function in English. Explain Promise.all ordering. | English prose; exact identifiers retained; distinguishes result order and completion order; no invented cancellation. |
+| 用中文注释讲解这个 SQL 查询，并展示各阶段的示例行。 | Shows rows before/after ranking/filtering; recognizes unspecified order or ties if present; no unrequested query changes. |
 | Add an example-based walkthrough to this Rust iterator pipeline. | Correct lazy/eager boundaries and ownership; no imaginary mutable execution sequence; native comments. |
 | Improve the existing example comments without making this method longer unnecessarily. | Updates stale examples; does not duplicate the fixture or chase a line-count target. |
 
@@ -20,7 +20,7 @@ Use these prompts to try the skill and review its outputs. They are qualitative 
 | Explain this function; do not edit any files. | Returns an annotated excerpt; no filesystem mutation. |
 | Add inline comments to strict JSON. | Preserves valid JSON; uses an excerpt/companion explanation instead. |
 | Repository requires English comments; user has not requested a language. | Uses English comments even if the conversation is in another language. |
-| User explicitly requests Japanese comments under instructions that permit that override. | Uses Japanese prose; preserves code identifiers and literals. |
+| User explicitly requests Chinese comments under instructions that permit that override. | Uses Chinese prose; preserves code identifiers and literals. |
 | Provided fixture contradicts the implementation. | Corrects the explanation and identifies the mismatch; does not change logic to manufacture the requested result. |
 | Comment says the method retries; no retry exists in the implementation. | Inspects helper/caller as needed and corrects the claim; no fabricated resilience. |
 | Generator, optimizer hint, build tag, type directive, docstring, or line-continuation hazard. | Preserves semantics and placement; uses a safe comment form or explains the limitation. |

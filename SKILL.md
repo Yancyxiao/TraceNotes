@@ -1,6 +1,6 @@
 ---
 name: trace-notes
-description: "Add or improve learning-oriented code comments using one concrete input, intermediate state changes, and an expected output. Use when someone asks for educational inline annotations, an example-based walkthrough written into code, or clearer explanations of complex methods. Adapt to the programming language and the reader's natural language. Preserve behavior; do not use for routine API documentation, PR review comments, or general refactoring."
+description: "Add or improve learning-oriented code comments using one concrete input, intermediate state changes, and an expected output. Use when someone asks for educational inline annotations, an example-based walkthrough written into code, or clearer explanations of complex methods. Use any programming language without a whitelist; write explanations in English or Simplified Chinese. Preserve behavior; do not use for routine API documentation, PR review comments, or general refactoring."
 ---
 
 # TraceNotes
@@ -14,7 +14,7 @@ Start with one sentence stating the code's purpose. In a source-editing task, pl
 - When asked to add comments to a file, edit that file within the authorized scope. When asked only to explain code, return an annotated excerpt without silently editing files.
 - Infer the target from the request and available context. Ask only if multiple plausible targets would lead to materially different work.
 - Default to a focused learning walkthrough: enough detail to reconstruct the important operations without narrating every statement. Honor requests for dense line-level teaching or concise production comments.
-- Adapt to any programming language you can accurately read; inspect its actual dialect, runtime, and comment rules. Do not promise tested support for every language.
+- Do not restrict tasks to programming languages used in the examples. There is no language whitelist: inspect the target language, dialect, runtime, and comment syntax. State uncertainty when you cannot verify a detail rather than rejecting the language because no sample is included.
 - Do not require a particular IDE, MCP server, model vendor, framework, operating system, or external service. Use symbol navigation when available and ordinary search/read tools otherwise.
 
 ## 1. Read before explaining
@@ -27,9 +27,9 @@ Start with one sentence stating the code's purpose. In a source-editing task, pl
 
 ## 2. Choose language and depth
 
-Treat the programming language and the explanation language as independent choices.
+Treat the programming language and the explanation language as independent choices. The maintained explanation and comment languages are English and Simplified Chinese; neither is tied to a programming language.
 
-- Follow applicable instruction priority. Within that hierarchy, use the explicitly requested comment language; otherwise follow repository comment-language rules, then the reader's conversation language.
+- Follow applicable instruction priority. Within that hierarchy, choose English or Simplified Chinese from the explicit request, then repository comment-language rules, then the conversation language. Default to English if neither choice is indicated. Never infer the comment language from the programming language.
 - Preserve identifiers, API names, literal inputs, and exact outputs. Translate explanatory prose, not the implementation. Explain unfamiliar terms briefly in the chosen natural language.
 - Infer knowledge from the reader's question and stated experience. An experienced engineer may still need a detailed walkthrough of an unfamiliar domain.
 - Distinguish general technical experience from familiarity with this language, framework, or subsystem. Define concepts the reader lacks and skip concepts they already know.
@@ -41,7 +41,7 @@ Use these optional preferences when stated; infer reasonable defaults rather tha
 | Preference | Default and adaptation |
 | --- | --- |
 | Target | The file, symbol, or snippet identified by context |
-| Comment language | Explicit request, then repository policy, then conversation language, subject to instruction priority |
+| Comment language | English or Simplified Chinese; explicit request, then repository policy, then conversation language, subject to instruction priority |
 | Depth | Focused walkthrough; concise for maintenance, detailed for unfamiliar transitions |
 | Reader background | Infer general experience and local familiarity separately |
 | Focus / known concepts | Emphasize the stated confusion; avoid reteaching known material |
@@ -129,6 +129,6 @@ Report the changed files/symbols, the behavior the example clarifies, and the ch
 
 ## Supporting material
 
-- [Worked examples](references/worked-examples.md): Java/Chinese, Python/English, JavaScript/Spanish, and SQL/French; adapt the method instead of copying a language blindly.
+- [Worked examples](references/worked-examples.md): sample mechanisms across several programming languages with English or Chinese comments; examples are not a language whitelist and do not prescribe language pairings.
 - [Language and file safety](references/language-safety.md): syntax hazards, units, ordering, and safe fallbacks.
 - [Practice cases](references/practice-cases.md): prompts and review criteria for trying the skill on new tasks; these are not a claim of measured benchmark performance.

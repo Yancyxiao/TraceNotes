@@ -1,4 +1,4 @@
 interface:
   display_name: "TraceNotes"
   short_description: "Teach code through examples and visible state changes"
-  default_prompt: "Use $trace-notes to annotate this code with one concrete example and verified state changes in my preferred language."
+  default_prompt: "Use $trace-notes to annotate this code with one concrete example and verified state changes, using English or Simplified Chinese comments."

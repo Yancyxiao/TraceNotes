@@ -8,7 +8,7 @@
 ![Agent Skill](https://img.shields.io/badge/Agent-Skill-4B5563)
 ![Language-adaptive](https://img.shields.io/badge/Comments-Language%20adaptive-2563EB)
 
-TraceNotes 是为代码添加学习型注释的 Agent Skill。它让具体输入贯穿真实实现，在关键代码旁展示中间状态、解释操作顺序，再对应回最终输出。它根据读者背景和语言需求调整讲解，并保持原有可执行逻辑。
+TraceNotes 是为代码添加学习型注释的 Agent Skill。它让具体输入贯穿真实实现，在关键代码旁展示中间状态、解释操作顺序，再对应回最终输出。它根据读者背景调整讲解，提供中文、英文说明，并保持原有可执行逻辑。**编程语言不设白名单，直接针对项目实际使用的语言进行适配。**
 
 适合开发、数据、数据库、基础设施等技术人员阅读陌生实现。经验丰富的工程师，也可能需要仔细理解一个不熟悉的子系统。
 
@@ -109,8 +109,8 @@ $trace-notes
 ```
 
 ```text
-Usa TraceNotes para comentar esta función JavaScript en español.
-Explica el orden de Promise.all con un ejemplo concreto.
+用 TraceNotes 给这个 JavaScript 函数添加英文注释。
+用一个具体例子说明 Promise.all 的结果顺序。
 ```
 
 ```text
@@ -138,7 +138,7 @@ Explica el orden de Promise.all con un ejemplo concreto.
 | 偏好 | 示例 |
 | --- | --- |
 | 目标 | 文件、函数、方法、查询或提供的片段 |
-| 注释语言 | 英文、中文、西班牙语、法语，或模型能够准确使用的其他语言 |
+| 注释语言 | 英文或简体中文，独立于代码使用的编程语言选择 |
 | 详细程度 | 简洁维护注释、重点过程讲解、详细教学 |
 | 读者背景 | 熟悉 Java，但刚接触响应式流 |
 | 关注问题 | 保存与重置、递归、取消、表格行、范围边界 |
@@ -152,15 +152,16 @@ Explica el orden de Promise.all con un ejemplo concreto.
 | 方面 | 范围 |
 | --- | --- |
 | Agent 接入 | 普通 `SKILL.md`，附可选 Codex UI 配置；不要求特定 MCP、IDE 或模型厂商 |
-| 编程语言 | 按真实语言适配，不承诺所有语言均已测试 |
-| 自带示例 | Java＋中文、Python＋英文、JavaScript＋西班牙语、SQL＋法语，以及严格 JSON 的处理 |
+| 编程语言 | 不设语言白名单，按目标语言、方言及注释语法适配 |
+| 示例用途 | 演示状态追踪与验证方法，不是支持语言清单 |
+| 说明与注释语言 | 中文、英文；任何编程语言都可以搭配其中任意一种 |
 | 读者水平 | 分别判断通用经验和当前领域熟悉度 |
 | 不支持注释的格式 | 保持格式有效，提供片段或授权的配套说明 |
 | 逻辑保持 | 通过约束与验证减少误改，不是数学意义上的保证 |
 
 TraceNotes 不设注释行数配额，不限制只能写 ASCII，不擅自重构。保留文件约定和有实际语义的指令注释，对未知辅助方法和并发顺序明确说明，不编造结果。参见[语言安全说明](references/language-safety.md)。
 
-仓库不包含遥测或后台服务。宿主 Agent 仍遵循自身执行、隐私和权限设置。当前没有对每种 Agent 或自然语言完成端到端测试。
+仓库不包含遥测或后台服务。宿主 Agent 仍遵循自身执行、隐私和权限设置。自带示例不代表所有编程语言或宿主 Agent 都已经完成端到端测试。
 
 ## 仓库结构
 

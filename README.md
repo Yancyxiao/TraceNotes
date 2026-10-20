@@ -8,7 +8,7 @@
 ![Agent Skill](https://img.shields.io/badge/Agent-Skill-4B5563)
 ![Language-adaptive](https://img.shields.io/badge/Comments-Language%20adaptive-2563EB)
 
-TraceNotes is an Agent Skill for educational code comments. It follows a concrete input through the real implementation, explains important intermediate states, and connects them to the final output. It adapts to the reader's background and preferred language while keeping executable behavior unchanged.
+TraceNotes is an Agent Skill for educational code comments. It follows a concrete input through the real implementation, explains important intermediate states, and connects them to the final output. It adapts to the reader's background, supports English and Simplified Chinese explanations, and keeps executable behavior unchanged. There is no programming-language whitelist: use the method with the language of the actual code.
 
 For developers, data engineers, database specialists, infrastructure engineers, and anyone reading an unfamiliar implementation. An experienced engineer may still need a detailed walkthrough of a new subsystem.
 
@@ -105,8 +105,8 @@ Show the stack before and after each important pop.
 ```
 
 ```text
-Usa TraceNotes para comentar esta función JavaScript en español.
-Explica el orden de Promise.all con un ejemplo concreto.
+Use TraceNotes to annotate this JavaScript function in English.
+Explain Promise.all ordering with one concrete example.
 ```
 
 ```text
@@ -134,7 +134,7 @@ These are natural-language preferences, not CLI flags or a required configuratio
 | Preference | Example |
 | --- | --- |
 | Target | A file, function, method, query, or supplied snippet |
-| Comment language | English, Chinese, Spanish, French, or another language the model can use accurately |
+| Comment language | English or Simplified Chinese, independently of the programming language |
 | Depth | Concise maintenance notes, focused walkthrough, detailed teaching |
 | Background | Familiar with Java; new to reactive streams |
 | Focus | Save/reset order, recursion, cancellation, table rows, range boundaries |
@@ -148,15 +148,16 @@ Programming language and comment language are independent. Explicit requests and
 | Area | Scope |
 | --- | --- |
 | Agent integration | Plain `SKILL.md`, optional Codex UI metadata; no required MCP server, IDE, or model vendor |
-| Programming languages | Language-adaptive guidance, not exhaustive tested support |
-| Included examples | Java/Chinese, Python/English, JavaScript/Spanish, SQL/French, strict JSON handling |
+| Programming languages | No language whitelist; adapt to the target language, dialect, and comment syntax |
+| Sample coverage | Runnable examples illustrate state changes and verification; they are not a supported-language list |
+| Explanation languages | English and Simplified Chinese; either can be used with any programming language |
 | Reader level | General experience and local familiarity are considered separately |
 | Formats without comments | Keep valid syntax; use an excerpt or authorized companion explanation |
 | Behavior preservation | A constrained workflow and verification practice, not a mathematical guarantee |
 
 TraceNotes sets no comment-line quota or ASCII-only restriction. It preserves file conventions and semantically active directives, avoids unrequested refactoring, and identifies unknown helper behavior or concurrency ordering instead of inventing results. See [language safety](references/language-safety.md).
 
-There is no telemetry or background service in this repository. The host agent retains its own execution, privacy, and permission settings. Not every agent or natural language has been tested end to end.
+There is no telemetry or background service in this repository. The host agent retains its own execution, privacy, and permission settings. The included examples do not imply that every programming language or host agent has been tested end to end.
 
 ## Repository layout
 

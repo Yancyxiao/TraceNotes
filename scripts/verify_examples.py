@@ -61,7 +61,7 @@ def main():
     with sqlite3.connect(":memory:") as connection:
         rows = connection.execute(blocks["sql"]).fetchall()
     assert rows == [("A", "p1", 8), ("B", "p3", 6)]
-    results.append({"language": "SQL/SQLite", "comment_language": "French", "checks": 1, "result": rows})
+    results.append({"language": "SQL/SQLite", "comment_language": "Simplified Chinese", "checks": 1, "result": rows})
 
     json_value = json.loads(blocks["json"])
     assert json_value == {"retries": 2, "timeoutMs": 500}
@@ -127,7 +127,7 @@ assert.equal(secondCompleted, true);
 console.log('5 JavaScript checks passed');
 ''', encoding="utf-8")
         output = run_checked([node, str(js_probe)])
-        results.append({"language": "JavaScript", "comment_language": "Spanish", "checks": 5, "result": output})
+        results.append({"language": "JavaScript", "comment_language": "English", "checks": 5, "result": output})
 
     report = {
         "status": "passed",

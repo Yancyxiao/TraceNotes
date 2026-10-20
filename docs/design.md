@@ -6,7 +6,7 @@ Reviewed on 2026-10-20. This is a comparison of the linked source files, not an 
 
 TraceNotes helps a reader reconstruct an implementation by following one fixture through decisive operations. Its unit of explanation is the meaningful state transition or value transformation. A comment should answer a specific learning question at the relevant code location.
 
-Programming language, natural language, general technical experience, and familiarity with the current subsystem are separate dimensions. None implies the others.
+Programming language, explanation language, general technical experience, and familiarity with the current subsystem are separate dimensions. There is no programming-language whitelist. English and Simplified Chinese are the maintained explanation languages, and either can accompany any programming language.
 
 ## What we learned
 
