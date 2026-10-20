@@ -21,6 +21,12 @@ Use these prompts to try the skill and review its outputs. They are qualitative 
 | Add inline comments to strict JSON. | Preserves valid JSON; uses an excerpt/companion explanation instead. |
 | Repository requires English comments; user has not requested a language. | Uses English comments even if the conversation is in another language. |
 | User explicitly requests Chinese comments under instructions that permit that override. | Uses Chinese prose; preserves code identifiers and literals. |
+| User asks in Chinese; the target method already has Chinese comments; no binding language instruction conflicts. | Adds Chinese comments without asking or defaulting to English. |
+| User asks in Chinese; the target method has predominantly English comments; no explicit language choice or binding conflict. | Adds English comments to match the local code and replies in Chinese. |
+| User explicitly asks for Chinese comments in a method with English comments, with no binding conflict. | The explicit choice wins: new comments are Chinese; unrelated existing comments are left intact. |
+| Target comments are absent or mixed; user asks in Chinese; no binding conflict. | Uses Chinese from the question instead of an English default. |
+| User asks in a natural language not used by the sample comments; no meaningful local comments or binding conflict. | Uses the question's language; English/Chinese documentation is not a whitelist. |
+| A file contains English identifiers and a copied English license but its meaningful local comments are Chinese. | Detects Chinese from the local comments; identifiers and boilerplate do not change that choice. |
 | Provided fixture contradicts the implementation. | Corrects the explanation and identifies the mismatch; does not change logic to manufacture the requested result. |
 | Comment says the method retries; no retry exists in the implementation. | Inspects helper/caller as needed and corrects the claim; no fabricated resilience. |
 | Generator, optimizer hint, build tag, type directive, docstring, or line-continuation hazard. | Preserves semantics and placement; uses a safe comment form or explains the limitation. |

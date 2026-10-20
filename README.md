@@ -8,7 +8,7 @@
 ![Agent Skill](https://img.shields.io/badge/Agent-Skill-4B5563)
 ![Language-adaptive](https://img.shields.io/badge/Comments-Language%20adaptive-2563EB)
 
-TraceNotes is an Agent Skill for educational code comments. It follows a concrete input through the real implementation, explains important intermediate states, and connects them to the final output. It adapts to the reader's background, supports English and Simplified Chinese explanations, and keeps executable behavior unchanged. There is no programming-language whitelist: use the method with the language of the actual code.
+TraceNotes is an Agent Skill for educational code comments. It follows a concrete input through the real implementation, explains important intermediate states, and connects them to the final output. It adapts to the reader's background, selects the comment language from user instructions, local comments, or the user's question, and keeps executable behavior unchanged. There is no programming-language whitelist: use the method with the language of the actual code.
 
 For developers, data engineers, database specialists, infrastructure engineers, and anyone reading an unfamiliar implementation. An experienced engineer may still need a detailed walkthrough of a new subsystem.
 
@@ -134,14 +134,20 @@ These are natural-language preferences, not CLI flags or a required configuratio
 | Preference | Example |
 | --- | --- |
 | Target | A file, function, method, query, or supplied snippet |
-| Comment language | English or Simplified Chinese, independently of the programming language |
+| Comment language | Detect automatically, or specify a language explicitly; independent of the programming language |
 | Depth | Concise maintenance notes, focused walkthrough, detailed teaching |
 | Background | Familiar with Java; new to reactive streams |
 | Focus | Save/reset order, recursion, cancellation, table rows, range boundaries |
 | Known concepts | Skip loops; explain ownership and lifetime |
 | Cross-references | Stable example/step labels for a long method |
 
-Programming language and comment language are independent. Explicit requests and repository policies determine the natural language, subject to instruction priority. Identifiers, APIs, literals, and exact output values remain intact.
+Programming language and comment language are independent. Within binding instructions, choose the comment language in this order:
+
+1. The user's explicit language request for the current task.
+2. The predominant language of meaningful comments in the target function, then nearby code in the same file.
+3. The language of the user's current question, using the main request or established conversation preference when mixed.
+
+Absent or mixed local comments fall back to the user's question, not automatically to English. Ignore code identifiers, sample strings, license boilerplate, and copied external text when detecting language. Reply in the user's conversation language; keep identifiers, APIs, literals, and exact output values intact. English and Chinese README files do not limit generated comments to those languages.
 
 ## Compatibility and limits
 
@@ -150,7 +156,7 @@ Programming language and comment language are independent. Explicit requests and
 | Agent integration | Plain `SKILL.md`, optional Codex UI metadata; no required MCP server, IDE, or model vendor |
 | Programming languages | No language whitelist; adapt to the target language, dialect, and comment syntax |
 | Sample coverage | Runnable examples illustrate state changes and verification; they are not a supported-language list |
-| Explanation languages | English and Simplified Chinese; either can be used with any programming language |
+| Comment languages | No language whitelist; infer from the request and local context, or follow an explicit choice |
 | Reader level | General experience and local familiarity are considered separately |
 | Formats without comments | Keep valid syntax; use an excerpt or authorized companion explanation |
 | Behavior preservation | A constrained workflow and verification practice, not a mathematical guarantee |

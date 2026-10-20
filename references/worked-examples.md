@@ -1,6 +1,6 @@
 # Worked examples
 
-These original examples demonstrate a portable method, not a programming-language whitelist or prescribed language pairing. Comments may be English or Simplified Chinese for any programming language; the sample choices below are interchangeable. In an actual repository, annotate its implementation and follow its contract. Do not replace it with these algorithms.
+These original examples demonstrate a portable method, not a programming-language whitelist or prescribed language pairing. The sample comments use English and Chinese for readability; actual tasks infer their comment language from the request and existing local comments, without a natural-language whitelist. In an actual repository, annotate its implementation and follow its contract. Do not replace it with these algorithms.
 
 ## Batch accumulation: flush, snapshot, then reset (Java example)
 

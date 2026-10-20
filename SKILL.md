@@ -1,6 +1,6 @@
 ---
 name: trace-notes
-description: "Add or improve learning-oriented code comments using one concrete input, intermediate state changes, and an expected output. Use when someone asks for educational inline annotations, an example-based walkthrough written into code, or clearer explanations of complex methods. Use any programming language without a whitelist; write explanations in English or Simplified Chinese. Preserve behavior; do not use for routine API documentation, PR review comments, or general refactoring."
+description: "Add or improve learning-oriented code comments using one concrete input, intermediate state changes, and an expected output. Use when someone asks for educational inline annotations, an example-based walkthrough written into code, or clearer explanations of complex methods. Use any programming language without a whitelist; infer the comment language from explicit user instructions, nearby existing comments, or the user's question. Preserve behavior; do not use for routine API documentation, PR review comments, or general refactoring."
 ---
 
 # TraceNotes
@@ -27,9 +27,13 @@ Start with one sentence stating the code's purpose. In a source-editing task, pl
 
 ## 2. Choose language and depth
 
-Treat the programming language and the explanation language as independent choices. The maintained explanation and comment languages are English and Simplified Chinese; neither is tied to a programming language.
+Treat the programming language and the comment language as independent choices. There is no natural-language whitelist. English and Chinese are the repository documentation languages, not a restriction on generated comments.
 
-- Follow applicable instruction priority. Within that hierarchy, choose English or Simplified Chinese from the explicit request, then repository comment-language rules, then the conversation language. Default to English if neither choice is indicated. Never infer the comment language from the programming language.
+- Apply binding instructions using the host's instruction hierarchy. A current explicit user language choice overrides general repository defaults where that hierarchy allows; do not confuse an inferred convention with a mandatory instruction.
+- Within those constraints, choose the comment language in this order: (1) the user's explicit language request for the current task; (2) the predominant language of meaningful existing comments in the target function, then nearby code in the same file; (3) the language of the user's current question. For mixed-language questions, use the language of the main request or the established conversation preference.
+- Ignore identifiers, language keywords, sample strings, license boilerplate, and copied third-party text when detecting comment language. If local comments are absent or mixed without a clear predominant language, use the user's question rather than imposing English.
+- Keep the reply language separate: answer in the user's requested/conversation language even when source comments follow a different local language. Do not translate unrelated existing comments unless asked.
+- Never infer natural language from the programming language or from this skill's English instruction text. Ask only when a genuine unresolved language conflict materially affects the task; do not ask when the signals above are clear.
 - Preserve identifiers, API names, literal inputs, and exact outputs. Translate explanatory prose, not the implementation. Explain unfamiliar terms briefly in the chosen natural language.
 - Infer knowledge from the reader's question and stated experience. An experienced engineer may still need a detailed walkthrough of an unfamiliar domain.
 - Distinguish general technical experience from familiarity with this language, framework, or subsystem. Define concepts the reader lacks and skip concepts they already know.
@@ -41,7 +45,7 @@ Use these optional preferences when stated; infer reasonable defaults rather tha
 | Preference | Default and adaptation |
 | --- | --- |
 | Target | The file, symbol, or snippet identified by context |
-| Comment language | English or Simplified Chinese; explicit request, then repository policy, then conversation language, subject to instruction priority |
+| Comment language | Explicit user choice, then meaningful local comments, then the current question; subject to binding instructions, with no language whitelist |
 | Depth | Focused walkthrough; concise for maintenance, detailed for unfamiliar transitions |
 | Reader background | Infer general experience and local familiarity separately |
 | Focus / known concepts | Emphasize the stated confusion; avoid reteaching known material |

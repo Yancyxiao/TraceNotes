@@ -6,7 +6,7 @@ Reviewed on 2026-10-20. This is a comparison of the linked source files, not an 
 
 TraceNotes helps a reader reconstruct an implementation by following one fixture through decisive operations. Its unit of explanation is the meaningful state transition or value transformation. A comment should answer a specific learning question at the relevant code location.
 
-Programming language, explanation language, general technical experience, and familiarity with the current subsystem are separate dimensions. There is no programming-language whitelist. English and Simplified Chinese are the maintained explanation languages, and either can accompany any programming language.
+Programming language, explanation language, general technical experience, and familiarity with the current subsystem are separate dimensions. There is no programming-language whitelist. English and Simplified Chinese are documentation languages, not generated-comment restrictions. Within binding instructions, comment language follows explicit user choice, meaningful existing local comments, then the language of the user's question.
 
 ## What we learned
 
@@ -23,7 +23,7 @@ Programming language, explanation language, general technical experience, and fa
 
 - No line-count growth target. More comments are useful only when they improve understanding.
 - No ASCII-only prose restriction. Preserve encoding while supporting the reader's natural language.
-- No unconditional English output. Repository rules and explicit requests govern the comment language under the applicable instruction hierarchy.
+- No unconditional English output or natural-language whitelist. Distinguish binding instructions from inferred conventions, then prefer explicit user choice, local existing comment language, and the current question in that order. Ignore identifiers and boilerplate as detection signals.
 - No forced certainty for a fragment. Explain visible behavior and identify missing context rather than inventing helper outputs.
 - No automatic refactor or full audit. Concrete findings are reported within the actual evidence and task scope.
 - No required tool integration. Serena or another symbol tool may help, but ordinary source navigation is sufficient.
